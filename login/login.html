@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.7.0/dist/css/bootstrap.min.css" integrity="sha384-cj3GU3E2D9h1ZIdQz9c5jEPSfV8ZqC2lJelPQIvfH6CIjQ8ZPDHv0e8CCwhcl5M" crossorigin="anonymous">
+  <title>Coconut</title>
+</head>
+<body>
+
+  <div class="coconut-container">
+    <div class="coconut-content">
+      <h1 class="coconut-text">coconut.</h1>
+      <p class="coconut-description-white">Connect with friends and the world around you on Coconut.</p>
+    </div>
+    <div class="side-rectangle">
+      <div class="input-container">
+        <input type="text" placeholder="E-mail or phone number">
+      </div>
+      <div class="input-container">
+        <input type="password" placeholder="Password">
+      </div>
+      <div class="button-container">
+        <button class="login-button" onclick="login()">Login</button>
+        <p class="forgot-password">Forgot your password?</p>
+        <button class="register-button" onclick="openModal()">Create new account</button>
+        <div class="space-below"></div> <!-- Espaço abaixo da linha e do botão -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal" id="myModal">
+    <div class="modal-content">
+      <!-- Conteúdo da modal -->
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h2 class="coconut-text-modal">coconut.</h2> <!-- Substituído "Create new account" por "coconut." -->
+      <div class="input-container-row">
+        <input type="text" placeholder="Full Name" id="fullName">
+      </div>
+      <div class="input-container">
+        <input type="date" id="dateOfBirth" placeholder="Date of Birth" max="" required>
+      </div>
+      <div class="input-container">
+        <input type="text" placeholder="E-mail or Phone Number" id="emailOrPhone">
+      </div>
+      <div class="input-container">
+        <input type="password" placeholder="Password" id="password">
+      </div>
+      <div class="button-container">
+        <button class="register-button" onclick="register()">Register</button>
+        <p id="errorMessage" class="error-message">All fields are required.</p>
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.7.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-cj3GU3E2D9h1ZIdQz9c5jEPSfV8ZqC2lJelPQIvfH6CIjQ8ZPDHv0e8CCwhcl5M" crossorigin="anonymous"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var currentDate = new Date();
+      currentDate.setFullYear(currentDate.getFullYear() - 16); // Permitir apenas maiores de 16 anos
+      var maxDate = currentDate.toISOString().split('T')[0];
+      document.getElementById('dateOfBirth').setAttribute('max', maxDate);
+    });
+
+    function openModal() {
+      document.getElementById('myModal').style.display = 'block';
+    }
+
+    function closeModal() {
+      document.getElementById('myModal').style.display = 'none';
+    }
+
+    function register() {
+      var fullName = document.getElementById('fullName').value;
+      var dateOfBirth = document.getElementById('dateOfBirth').value;
+      var emailOrPhone = document.getElementById('emailOrPhone').value;
+      var password = document.getElementById('password').value;
+
+      // Verificar se todos os campos estão preenchidos
+      if (fullName && dateOfBirth && emailOrPhone && password) {
+        // Lógica de registro aqui
+        // Limpar mensagem de erro, caso exista
+        document.getElementById('errorMessage').textContent = '';
+        // Fechar a modal após o registro (simulando)
+        closeModal();
+      } else {
+        // Exibir mensagem de erro
+        document.getElementById('errorMessage').textContent = 'All fields are required.';
+      }
+    }
+  </script>
+
+</body>
+</html>
